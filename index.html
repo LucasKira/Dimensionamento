@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Dimensionamento</title>
+    <style>
+        body {
+            background-color: #1c1c1d; /* Cor de fundo escura */
+            color: #cac6c6; /* Cor do texto principal */
+            font-family: Arial, sans-serif; /* Fonte padrão */
+            padding-top: 20px;
+        }
+        header {
+            text-align: center;
+            color: #44c499; /* Cor do cabeçalho */
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #2a2a2b; /* Cor de fundo do container */
+            border-radius: 8px;
+            border: 1px solid #444;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .form-floating {
+            margin-bottom: 15px;
+        }
+        .form-floating > .form-control {
+            background-color: #434343; /* Cor de fundo do input */
+            color: #cac6c6; /* Cor do texto do input */
+            border: 1px solid #666;
+        }
+        .form-floating > label {
+            color: #6c757d; /* Cor do label */
+            margin-top: -13px; /* Espaçamento entre label e select */
+        }
+        .form-select {
+            background-color: #434343; /* Cor de fundo do select */
+            color: #cac6c6; /* Cor do texto do select */
+            border: 1px solid #666;
+        }
+        #botaocalcular {
+            margin-top: 10px;
+        }
+        #resultado {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #2a2a2b; /* Cor de fundo do resultado */
+            border-radius: 8px;
+            border: 1px solid #444;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: none; /* Escondido por padrão */
+        }
+        #resultado h1 {
+            color: #44c499; /* Cor do título do resultado */
+        }
+        #resultado p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header><b>DIMENSIONAMENTO</b></header>
+    <div class="container">
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingInput1" placeholder=" ">
+            <label for="floatingInput1">Profundidade da bomba (metros)</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword1" placeholder=" ">
+            <label for="floatingPassword1">Nível dinâmico (metros)</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingInput2" placeholder=" ">
+            <label for="floatingInput2">Diâmetro interno do tubo dentro do poço</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword2" placeholder=" ">
+            <label for="floatingPassword2">Desnível (metros)</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingInput3" placeholder=" ">
+            <label for="floatingInput3">Distância (metros)</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword3" placeholder=" ">
+            <label for="floatingPassword3">Diâmetro interno do tubo fora do poço</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword4" placeholder=" ">
+            <label for="floatingPassword4">Vazão desejada</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <label for="tuboBomba">Cano da bomba</label>
+            <select id="tuboBomba" class="form-select">
+                <option value="metalicob">Metálico</option>
+                <option value="pvcb">PVC</option>
+            </select>
+        </div>
+        <div class="form-floating mb-3">
+            <label for="tuboBombaDiametro">Diâmetro do cano da bomba</label>
+            <select id="tuboBombaDiametro" class="form-select">
+                <option value="1">1"</option>
+                <option value="1.25">1.1/4"</option>
+                <option value="1.5">1.1/2"</option>
+                <option value="2">2"</option>
+                <option value="2.5">2.1/2"</option>
+                <option value="3">3"</option>
+                <option value="4">4"</option>
+                <option value="5">5"</option>
+                <option value="6">6"</option>
+                <option value="8">8"</option>
+                <option value="10">10"</option>
+                <option value="12">12"</option>
+            </select>
+        </div>
+
+        <div class="form-floating mb-3">
+            <label for="tuboReservatorio">Cano reservatório</label>
+            <select id="tuboReservatorio" class="form-select">
+                <option value="metalicor">Metálico</option>
+                <option value="pvcr">PVC</option>
+            </select>
+        </div>
+        <div class="form-floating mb-3">
+            <label for="tuboReservatórioDiametro">Diâmetro do cano reservatório</label>
+            <select id="tuboReservatórioDiametro" class="form-select">
+                <option value="1">1"</option>
+                <option value="1.25">1.1/4"</option>
+                <option value="1.5">1.1/2"</option>
+                <option value="2">2"</option>
+                <option value="2.5">2.1/2"</option>
+                <option value="3">3"</option>
+                <option value="4">4"</option>
+                <option value="5">5"</option>
+                <option value="6">6"</option>
+                <option value="8">8"</option>
+                <option value="10">10"</option>
+                <option value="12">12"</option>
+            </select>
+        </div>
+
+        <button onclick="resultado()" id="botaocalcular" type="button" class="btn btn-primary">Calcular</button>
+    </div>
+
+    <div id="resultado">
+        <h1>Sugestões de produtos:</h1>
+        <hr>
+        <p>AMT = _ _ _</p>
+        <p>BOMBA 4":</p>
+        <p>BOMBA 6":</p>
+    </div>
+
+    <script>
+        function resultado() {
+            const inputs = document.querySelectorAll('.form-control');
+            let allFilled = true;
+
+            inputs.forEach(input => {
+                if (input.value === '') {
+                    allFilled = false;
+                    return;
+                }
+            });
+
+            if (!allFilled) {
+                alert('Preencha todos os campos');
+            } else {
+                document.getElementById('resultado').style.display = "block";
+            }
+        }
+
+
+    </script>
+</body>
+</html>
